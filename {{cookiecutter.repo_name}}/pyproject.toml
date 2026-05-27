@@ -5,27 +5,70 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "{{cookiecutter.repo_name}}"
 version = "{{cookiecutter.version}}"
+dependencies = []
+requires-python = ">=3.10"
+
 authors = [
-  { name="{{cookiecutter.full_name}}", email="{{cookiecutter.email}}" },
+    { name = "{{cookiecutter.full_name}}", email = "{{cookiecutter.email}}" },
+]
+maintainers = [
+    { name = "{{cookiecutter.full_name}}", email = "{{cookiecutter.email}}" },
 ]
 description = "{{cookiecutter.project_short_description}}"
-readme = "README.md"
-requires-python = ">=3.10"
+readme = { file = "README.md", content-type = "text/markdown" }
+license = "MIT" # Use SPDX identifier (https://spdx.org/licenses/)
+license-files = ["LICEN[CS]E*", "vendored/licenses/*.txt", "AUTHORS.md"]
+
+# Keywords to help with searchability on PyPI
+keywords = []
+
+# For a full list of possible classifiers, see https://pypi.org/classifiers/
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+    "Development Status :: 1 - Planning",
+    # Prevents accidental upload. Remove when it is time to publish!
+    "Private :: Do Not Upload",
 ]
-dependencies = []
 
-[project.optional-dependencies]
+# Optional dependencies needed for an optional feature of your package
+# [project.optional-dependencies]
+# cli = ["click"]
+
+# Optional dependencies for internal development, not to be included in
+# project metadata when built. This is for dependencies needed for auxilliary
+# functionalities like documentation and testing.
+#
+# Dependency groups are installed with pip via `pip install . --group <groupname>`
+#
+# https://packaging.python.org/en/latest/specifications/dependency-groups/
+[dependency-groups]
+docs = ["sphinx", "sphinx-rtd-theme"]
+test = ["pytest"]
 dev = [
-    "pytest",
-    "sphinx",
-    "sphinx-rtd-theme",
+    "pre-commit",
     "flake8",
-    "python-semantic-release"
+    "python-semantic-release",
+    { include-group = "docs" },
+    { include-group = "test" },
 ]
+
+# TEMPLATE: Update with your project's URLs once you have them
+[project.urls]
+# Homepage = "https://example.com"
+Documentation = "https://{{cookiecutter.user_or_org}}.github.io/{{cookiecutter.repo_name}}"
+Repository = "https://github.com/{{cookiecutter.user_or_org}}/{{cookiecutter.repo_name}}.git"
+"Bug Tracker" = "https://github.com/{{cookiecutter.user_or_org}}/{{cookiecutter.repo_name}}/issues"
+Changelog = "https://github.com/{{cookiecutter.user_or_org}}/{{cookiecutter.repo_name}}/blob/main/CHANGELOG.md"
+
+# Command line scripts/applications provided by the project
+# [project.scripts]
+# {{cookiecutter.package_name}}-cli = "{{cookiecutter.package_name}}.apps:main_cli"
+
+# GUI scripts/applications provided by the project
+# [project.gui-scripts]
+# {{cookiecutter.package_name}}-gui = "{{cookiecutter.package_name}}.apps:main_gui"
 
 [tool.semantic_release]
 version_variable = "pyproject.toml:version"
