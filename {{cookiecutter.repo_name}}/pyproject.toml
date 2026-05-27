@@ -75,6 +75,22 @@ Changelog = "https://github.com/{{cookiecutter.user_or_org}}/{{cookiecutter.repo
 # Tool configurations
 # ============================================================================
 
+# See https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#configuration-via-a-file
+[tool.black]
+line-length = 80
+
+# See https://github.com/LilSpazJoekp/docstrfmt
+[tool.docstrfmt]
+line_length = 80
+
+# See https://isort.readthedocs.io/en/latest/configuration/options.html
+[tool.isort]
+profile = "black"
+known_first_party = "{{cookiecutter.package_name}}"
+multi_line_output = 3
+line_length = 80
+
+# See https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
 [tool.pytest.ini_options]
 # Uncomment for test coverage reports
 # addopts = "--cov {{cookiecutter.package_name}} --cov-report term-missing --verbose"
