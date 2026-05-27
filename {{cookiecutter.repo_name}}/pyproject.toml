@@ -70,6 +70,17 @@ Changelog = "https://github.com/{{cookiecutter.user_or_org}}/{{cookiecutter.repo
 # [project.gui-scripts]
 # {{cookiecutter.package_name}}-gui = "{{cookiecutter.package_name}}.apps:main_gui"
 
+
+# ============================================================================
+# Tool configurations
+# ============================================================================
+
+[tool.pytest.ini_options]
+# Uncomment for test coverage reports
+# addopts = "--cov {{cookiecutter.package_name}} --cov-report term-missing --verbose"
+norecursedirs = "dist build"
+testpaths = ["tests"]
+
 [tool.semantic_release]
 version_variable = "pyproject.toml:version"
 branch = "main"
