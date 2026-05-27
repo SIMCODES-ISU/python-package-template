@@ -81,6 +81,7 @@ Changelog = "https://github.com/{{cookiecutter.user_or_org}}/{{cookiecutter.repo
 norecursedirs = "dist build"
 testpaths = ["tests"]
 
+# See https://python-semantic-release.readthedocs.io/en/latest/configuration/configuration.html#config
 [tool.semantic_release]
-version_variable = "pyproject.toml:version"
+version_toml = ["pyproject.toml:project.version"]
 branch = "main"
