@@ -30,6 +30,12 @@ pip install .
 
 These steps outline how to build and view the documentation on your local computer. You must already have the dependencies outlined above installed.
 
+0. Navigate into `docs/`
+
+```bash
+cd docs
+```
+
 1. Build the documentation website
 
 ```bash
