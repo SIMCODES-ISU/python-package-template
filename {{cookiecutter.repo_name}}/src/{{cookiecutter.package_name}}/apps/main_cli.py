@@ -43,10 +43,12 @@ def main(argv: list[str]) -> int:
 
     # Print version and exit
     if args.version:
-        print(f"{__version__}")
+        print(__version__)
         return 0
 
-    hello_world()
+    print(hello_world())
+
+    return 0
 
 
 def run() -> int:
