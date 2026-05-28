@@ -1,0 +1,11 @@
+# Flake8 config
+# Separate file since it isn't compatible with pyproject.toml yet
+[flake8]
+max_line_length = 88
+# E203 and W503 have edge cases handled by Black
+extend_ignore = E203, W503
+exclude =
+    build
+    dist
+    .eggs
+    docs/source/conf.py

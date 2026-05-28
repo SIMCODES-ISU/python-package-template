@@ -5,28 +5,98 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "{{cookiecutter.repo_name}}"
 version = "{{cookiecutter.version}}"
+dependencies = []
+requires-python = ">=3.10"
+
 authors = [
-  { name="{{cookiecutter.full_name}}", email="{{cookiecutter.email}}" },
+    { name = "{{cookiecutter.full_name}}", email = "{{cookiecutter.email}}" },
+]
+maintainers = [
+    { name = "{{cookiecutter.full_name}}", email = "{{cookiecutter.email}}" },
 ]
 description = "{{cookiecutter.project_short_description}}"
-readme = "README.md"
-requires-python = ">=3.8"
+readme = { file = "README.md", content-type = "text/markdown" }
+license = "MIT" # Use SPDX identifier (https://spdx.org/licenses/)
+license-files = ["LICEN[CS]E*", "vendored/licenses/*.txt", "AUTHORS.md"]
+
+# Keywords to help with searchability on PyPI
+keywords = []
+
+# For a full list of possible classifiers, see https://pypi.org/classifiers/
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+    "Development Status :: 1 - Planning",
+    # Prevents accidental upload. Remove when it is time to publish!
+    "Private :: Do Not Upload",
 ]
-dependencies = []
 
-[project.optional-dependencies]
+# Optional dependencies needed for an optional feature of your package
+# [project.optional-dependencies]
+# cli = ["click"]
+
+# Optional dependencies for internal development, not to be included in
+# project metadata when built. This is for dependencies needed for auxilliary
+# functionalities like documentation and testing.
+#
+# Dependency groups are installed with pip via `pip install . --group <groupname>`
+#
+# https://packaging.python.org/en/latest/specifications/dependency-groups/
+[dependency-groups]
+docs = ["sphinx", "sphinx-rtd-theme"]
+test = ["pytest"]
 dev = [
-    "pytest",
-    "sphinx",
-    "sphinx-rtd-theme",
+    "pre-commit",
     "flake8",
-    "python-semantic-release"
+    "python-semantic-release",
+    { include-group = "docs" },
+    { include-group = "test" },
 ]
 
+# TEMPLATE: Update with your project's URLs once you have them
+[project.urls]
+# Homepage = "https://example.com"
+Documentation = "https://{{cookiecutter.username}}.github.io/{{cookiecutter.repo_name}}"
+Repository = "https://github.com/{{cookiecutter.username}}/{{cookiecutter.repo_name}}.git"
+"Bug Tracker" = "https://github.com/{{cookiecutter.username}}/{{cookiecutter.repo_name}}/issues"
+Changelog = "https://github.com/{{cookiecutter.username}}/{{cookiecutter.repo_name}}/blob/main/CHANGELOG.md"
+
+# Command line scripts/applications provided by the project
+# [project.scripts]
+# {{cookiecutter.package_name}}-cli = "{{cookiecutter.package_name}}.apps:main_cli"
+
+# GUI scripts/applications provided by the project
+# [project.gui-scripts]
+# {{cookiecutter.package_name}}-gui = "{{cookiecutter.package_name}}.apps:main_gui"
+
+
+# ============================================================================
+# Tool configurations
+# ============================================================================
+
+# See https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#configuration-via-a-file
+[tool.black]
+line-length = 80
+
+# See https://github.com/LilSpazJoekp/docstrfmt
+[tool.docstrfmt]
+line_length = 80
+
+# See https://isort.readthedocs.io/en/latest/configuration/options.html
+[tool.isort]
+profile = "black"
+known_first_party = "{{cookiecutter.package_name}}"
+multi_line_output = 3
+line_length = 80
+
+# See https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
+[tool.pytest.ini_options]
+# Uncomment for test coverage reports
+# addopts = "--cov {{cookiecutter.package_name}} --cov-report term-missing --verbose"
+norecursedirs = "dist build"
+testpaths = ["tests"]
+
+# See https://python-semantic-release.readthedocs.io/en/latest/configuration/configuration.html#config
 [tool.semantic_release]
-version_variable = "pyproject.toml:version"
+version_toml = ["pyproject.toml:project.version"]
 branch = "main"

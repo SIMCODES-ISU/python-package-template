@@ -6,9 +6,9 @@ template for generating professional Python projects. Designed for SIMCODES-ISU.
 ## Features
 
 * **Modern Structure:** `src/` layout for better packaging.
-* **Testing:** Pre-configured with `pytest`.
-* **Documentation:** Ready-to-build Sphinx docs with `sphinx-rtd-theme`.
-* **CI/CD:** GitHub Actions workflow for automated testing and linting.
+* **Testing:** Pre-configured for `pytest`.
+* **Documentation:** Ready-to-build Sphinx docs looking good out of the box with `sphinx-rtd-theme`.
+* **CI/CD:** GitHub Actions workflows for automated testing and linting.
 * **Quality Control:** Pre-commit hooks for naming validation.
 
 ## How to Use the Template
@@ -45,6 +45,7 @@ Cookiecutter will then proceed to ask you to provide the following information:
 
 - full name
 - email
+- username (use your GitHub username or Organization the repo will be hosted under)
 - repo_name (use whatever you called it on GitHub)
 - package_name (this will be the name used in Python import statements)
 - project_short_description (use whatever you put on GitHub)
